@@ -36,6 +36,26 @@ function setState(n) {
 
   updatedScore = n;
 }
+
+function hoverEffect(n) {
+  const starsLength = Object.values(stars.value).length;
+
+  for (let index = 1; index <= starsLength; index++) {
+    if (index <= n) {
+      stars.value[index].$el.style.color = 'gold';
+    } else {
+      stars.value[index].$el.style.color = '';
+    }
+  }
+}
+
+function restore() {
+  const starsLength = Object.values(stars.value).length;
+
+  for (let index = 1; index <= starsLength; index++) {
+      stars.value[index].$el.style.color = '';
+  }
+}
 </script>
 
 <template>
@@ -45,6 +65,8 @@ function setState(n) {
       v-for="n in 5"
       :key="n"
       @click="setState(n)"
+      @mouseover="hoverEffect(n)"
+      @mouseleave="restore()"
       :ref="(el) => (stars[n] = el)"
       :state="states[n]"
     />
