@@ -1,9 +1,10 @@
 <script setup>
+import Rating from './components/RatingComponent.vue'
 
 </script>
 
 <template>
-  RATING
+    <Rating />
 </template>
 
 <style scoped>
