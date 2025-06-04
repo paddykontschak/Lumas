@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import Star from './StarComponent.vue'
 defineProps({
   category: {
@@ -10,6 +11,31 @@ defineProps({
     required: true,
   },
 })
+let updatedScore = null;
+
+const stars = ref({});
+
+const states = ref({
+  '1': 'empty',
+  '2': 'empty',
+  '3': 'empty',
+  '4': 'empty',
+  '5': 'empty'
+})
+
+function setState(n) {
+  const statesLength = Object.values(states.value).length;
+
+  for (let index = 1; index <= statesLength; index++) {
+    if (index <= n) {
+      states.value[index] = 'full';
+    } else {
+      states.value[index] = 'empty';
+    }
+  }
+
+  updatedScore = n;
+}
 </script>
 
 <template>
@@ -18,8 +44,11 @@ defineProps({
     <Star
       v-for="n in 5"
       :key="n"
+      @click="setState(n)"
+      :ref="(el) => (stars[n] = el)"
+      :state="states[n]"
     />
-    <span class="score">{{score}} / 5</span>
+    <span class="score">{{updatedScore ?? score}} / 5</span>
   </div>
 </template>
 
