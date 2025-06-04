@@ -23,6 +23,9 @@ const states = ref({
   '5': 'empty'
 })
 
+// These functions could be optimized for production,
+// fewer for-loops, handle states (including hover) with classes
+// instead of refs
 function setState(n) {
   const statesLength = Object.values(states.value).length;
 

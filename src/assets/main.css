@@ -33,4 +33,9 @@ a,
     gap: 25px;
     padding: 0 2rem;
   }
+
+  .credit {
+    grid-row: 2;
+    grid-column: 2;
+  }
 }
